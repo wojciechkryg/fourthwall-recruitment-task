@@ -1,4 +1,4 @@
-package com.wojdor.fourthwallrecruitmenttask.ui.app.theme
+package com.wojdor.fourthwallrecruitmenttask.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

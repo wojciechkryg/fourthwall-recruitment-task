@@ -1,12 +1,16 @@
-package com.wojdor.fourthwallrecruitmenttask.ui.app.gallery
+package com.wojdor.fourthwallrecruitmenttask.ui.gallery
 
 import androidx.activity.viewModels
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.wojdor.fourthwallrecruitmenttask.ui.app.base.mvi.MviActivity
-import com.wojdor.fourthwallrecruitmenttask.ui.app.base.mvi.UiState
-import com.wojdor.fourthwallrecruitmenttask.ui.app.theme.AppTheme
+import com.wojdor.fourthwallrecruitmenttask.ui.base.mvi.MviActivity
+import com.wojdor.fourthwallrecruitmenttask.ui.base.mvi.UiState
+import com.wojdor.fourthwallrecruitmenttask.ui.gallery.GalleryIntent.DownloadPhotos
+import com.wojdor.fourthwallrecruitmenttask.ui.gallery.GalleryState.Idle
+import com.wojdor.fourthwallrecruitmenttask.ui.gallery.GalleryState.Photos
+import com.wojdor.fourthwallrecruitmenttask.ui.theme.AppTheme
+import com.wojdor.fourthwallrecruitmenttask.ui.util.extension.logD
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,7 +24,10 @@ class GalleryActivity : MviActivity<GalleryViewModel>() {
     }
 
     override fun onUiState(state: UiState) {
-        // TODO: Handle new UiState
+        when (state) {
+            Idle -> viewModel.sendIntent(DownloadPhotos)
+            is Photos -> logD(state.photos.toString())
+        }
     }
 }
 

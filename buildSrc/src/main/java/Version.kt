@@ -11,5 +11,8 @@ object Version {
     const val junitExt = "1.1.3"
     const val kotlin = "1.5.31"
     const val lifecycle = "2.4.0"
+    const val loggingInterceptor = "4.9.2"
     const val material = "1.4.0"
+    const val moshi = "1.12.0"
+    const val retrofit = "2.9.0"
 }

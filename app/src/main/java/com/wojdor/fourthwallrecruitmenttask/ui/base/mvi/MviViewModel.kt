@@ -1,7 +1,7 @@
-package com.wojdor.fourthwallrecruitmenttask.ui.app.base.mvi
+package com.wojdor.fourthwallrecruitmenttask.ui.base.mvi
 
 import androidx.lifecycle.viewModelScope
-import com.wojdor.fourthwallrecruitmenttask.ui.app.base.BaseViewModel
+import com.wojdor.fourthwallrecruitmenttask.ui.base.BaseViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,22 +17,20 @@ abstract class MviViewModel<I : UiIntent, S : UiState>(initialState: S) : BaseVi
         get() = _uiState
 
     init {
-        startCollectingUiIntents()
+        startCollectingIntents()
     }
 
-    fun sendUiIntent(intent: I) {
+    fun sendIntent(intent: I) {
         viewModelScope.launch { _uiIntent.send(intent) }
     }
 
-    protected open fun onUiIntent(intent: I) {
-        // can be overridden by children implementations
-    }
+    protected abstract fun onIntent(intent: I)
 
-    protected fun publishUiState(state: S) {
+    protected fun publishState(state: S) {
         _uiState.value = state
     }
 
-    private fun startCollectingUiIntents() {
-        viewModelScope.launch { _uiIntent.receiveAsFlow().collect { onUiIntent(it) } }
+    private fun startCollectingIntents() {
+        viewModelScope.launch { _uiIntent.receiveAsFlow().collect { onIntent(it) } }
     }
 }

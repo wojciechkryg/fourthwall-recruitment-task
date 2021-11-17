@@ -1,5 +1,12 @@
 object Dependency {
 
+    const val loggingInterceptor =
+        "com.squareup.okhttp3:logging-interceptor:${Version.loggingInterceptor}"
+    const val moshi = "com.squareup.moshi:moshi:${Version.moshi}"
+    const val moshiCodegen = "com.squareup.moshi:moshi-kotlin-codegen:${Version.moshi}"
+    const val retrofit = "com.squareup.retrofit2:retrofit:${Version.retrofit}"
+    const val retrofitConverter = "com.squareup.retrofit2:converter-moshi:${Version.retrofit}"
+
     object AndroidX {
         const val activity = "androidx.activity:activity-ktx:${Version.activity}"
         const val activityCompose = "androidx.activity:activity-compose:${Version.activity}"

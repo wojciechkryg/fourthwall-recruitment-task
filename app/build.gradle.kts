@@ -47,6 +47,11 @@ android {
 }
 
 dependencies {
+    implementation(Dependency.loggingInterceptor)
+    implementation(Dependency.moshi)
+    kapt(Dependency.moshiCodegen)
+    implementation(Dependency.retrofit)
+    implementation(Dependency.retrofitConverter)
     implementation(Dependency.AndroidX.activity)
     implementation(Dependency.AndroidX.activityCompose)
     implementation(Dependency.AndroidX.appCompat)

@@ -1,4 +1,4 @@
-package com.wojdor.fourthwallrecruitmenttask.ui.app
+package com.wojdor.fourthwallrecruitmenttask.ui
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

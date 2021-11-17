@@ -1,4 +1,4 @@
-package com.wojdor.fourthwallrecruitmenttask.ui.app.base
+package com.wojdor.fourthwallrecruitmenttask.ui.base
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import com.wojdor.fourthwallrecruitmenttask.ui.app.theme.AppTheme
+import com.wojdor.fourthwallrecruitmenttask.ui.theme.AppTheme
 
 abstract class BaseActivity<VM : BaseViewModel> : ComponentActivity() {
 

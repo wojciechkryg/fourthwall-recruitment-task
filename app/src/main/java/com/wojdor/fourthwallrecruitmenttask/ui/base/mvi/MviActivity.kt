@@ -1,8 +1,8 @@
-package com.wojdor.fourthwallrecruitmenttask.ui.app.base.mvi
+package com.wojdor.fourthwallrecruitmenttask.ui.base.mvi
 
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
-import com.wojdor.fourthwallrecruitmenttask.ui.app.base.BaseActivity
+import com.wojdor.fourthwallrecruitmenttask.ui.base.BaseActivity
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 

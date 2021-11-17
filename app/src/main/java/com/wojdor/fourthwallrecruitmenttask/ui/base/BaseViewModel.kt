@@ -1,4 +1,4 @@
-package com.wojdor.fourthwallrecruitmenttask.ui.app.base
+package com.wojdor.fourthwallrecruitmenttask.ui.base
 
 import androidx.lifecycle.ViewModel
 
