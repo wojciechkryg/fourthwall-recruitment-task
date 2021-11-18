@@ -46,6 +46,10 @@ android {
     }
 }
 
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
+
 dependencies {
     implementation(Dependency.loggingInterceptor)
     implementation(Dependency.moshi)
@@ -67,7 +71,12 @@ dependencies {
     implementation(Dependency.Google.hilt)
     kapt(Dependency.Google.hiltCompiler)
     implementation(Dependency.Google.material)
+    implementation(Dependency.KotlinX.coroutines)
+    implementation(Dependency.KotlinX.coroutinesAndroid)
+    testImplementation(Dependency.Test.coroutines)
     testImplementation(Dependency.Test.junit)
+    testRuntimeOnly(Dependency.Test.junitEngine)
+    testImplementation(Dependency.Test.mockk)
     androidTestImplementation(Dependency.Test.composeJunit)
     androidTestImplementation(Dependency.Test.espresso)
     androidTestImplementation(Dependency.Test.junitExt)

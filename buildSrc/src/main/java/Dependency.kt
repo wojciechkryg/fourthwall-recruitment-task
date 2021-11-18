@@ -40,9 +40,12 @@ object Dependency {
     }
 
     object Test {
+        const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Version.coroutines}"
         const val composeJunit = "androidx.compose.ui:ui-test-junit4:${Version.compose}"
         const val espresso = "androidx.test.espresso:espresso-core:${Version.espresso}"
-        const val junit = "junit:junit:${Version.junit}"
+        const val junit = "org.junit.jupiter:junit-jupiter-api:${Version.junit}"
+        const val junitEngine = "org.junit.jupiter:junit-jupiter-engine:${Version.junit}"
         const val junitExt = "androidx.test.ext:junit:${Version.junitExt}"
+        const val mockk = "io.mockk:mockk:${Version.mockk}"
     }
 }
