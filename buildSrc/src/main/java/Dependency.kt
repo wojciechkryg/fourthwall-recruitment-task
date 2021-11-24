@@ -1,5 +1,6 @@
 object Dependency {
 
+    const val coil = "io.coil-kt:coil-compose:${Version.coil}"
     const val loggingInterceptor =
         "com.squareup.okhttp3:logging-interceptor:${Version.loggingInterceptor}"
     const val moshi = "com.squareup.moshi:moshi:${Version.moshi}"
@@ -25,6 +26,8 @@ object Dependency {
         const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:${Version.lifecycle}"
         const val lifecycleViewModel =
             "androidx.lifecycle:lifecycle-viewmodel-ktx:${Version.lifecycle}"
+        const val lifecycleViewModelCompose =
+            "androidx.lifecycle:lifecycle-viewmodel-compose:${Version.lifecycle}"
     }
 
     object Google {

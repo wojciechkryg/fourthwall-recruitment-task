@@ -1,6 +1,7 @@
 object Version {
     const val activity = "1.4.0"
     const val appCompat = "1.3.1"
+    const val coil = "1.4.0"
     const val compose = "1.0.5"
     const val core = "1.7.0"
     const val coroutines = "1.5.2"

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Fourthwall Recruitment Task</string>
+    <string name="photo_grid_item_description">%s\'s photo</string>
 </resources>

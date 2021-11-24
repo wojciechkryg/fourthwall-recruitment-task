@@ -51,6 +51,7 @@ tasks.withType<Test> {
 }
 
 dependencies {
+    implementation(Dependency.coil)
     implementation(Dependency.loggingInterceptor)
     implementation(Dependency.moshi)
     kapt(Dependency.moshiCodegen)
@@ -68,6 +69,7 @@ dependencies {
     implementation(Dependency.AndroidX.core)
     implementation(Dependency.AndroidX.lifecycleRuntime)
     implementation(Dependency.AndroidX.lifecycleViewModel)
+    implementation(Dependency.AndroidX.lifecycleViewModelCompose)
     implementation(Dependency.Google.hilt)
     kapt(Dependency.Google.hiltCompiler)
     implementation(Dependency.Google.material)
