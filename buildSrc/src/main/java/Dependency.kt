@@ -23,11 +23,15 @@ object Dependency {
         const val composeToolingPreview =
             "androidx.compose.ui:ui-tooling-preview:${Version.compose}"
         const val core = "androidx.core:core-ktx:${Version.core}"
+        const val hiltNavigationCompose =
+            "androidx.hilt:hilt-navigation-compose:${Version.hiltNavigationCompose}"
         const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:${Version.lifecycle}"
         const val lifecycleViewModel =
             "androidx.lifecycle:lifecycle-viewmodel-ktx:${Version.lifecycle}"
         const val lifecycleViewModelCompose =
             "androidx.lifecycle:lifecycle-viewmodel-compose:${Version.lifecycle}"
+        const val navigationCompose =
+            "androidx.navigation:navigation-compose:${Version.navigationCompose}"
     }
 
     object Google {

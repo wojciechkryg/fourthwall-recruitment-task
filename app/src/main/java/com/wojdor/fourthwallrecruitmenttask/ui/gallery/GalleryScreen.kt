@@ -1,6 +1,5 @@
 package com.wojdor.fourthwallrecruitmenttask.ui.gallery
 
-import androidx.activity.viewModels
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.aspectRatio
@@ -14,36 +13,27 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberImagePainter
 import com.wojdor.fourthwallrecruitmenttask.R
 import com.wojdor.fourthwallrecruitmenttask.domain.model.Photo
-import com.wojdor.fourthwallrecruitmenttask.ui.base.BaseActivity
-import com.wojdor.fourthwallrecruitmenttask.ui.gallery.GalleryIntent.DownloadPhotos
-import com.wojdor.fourthwallrecruitmenttask.ui.gallery.GalleryState.*
 import com.wojdor.fourthwallrecruitmenttask.ui.util.extension.logD
-import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalFoundationApi
-@AndroidEntryPoint
-class GalleryActivity : BaseActivity<GalleryViewModel>() {
-
-    override val viewModel: GalleryViewModel by viewModels()
-
-    @Composable
-    override fun Content() {
-        val state by viewModel.uiState.collectAsState()
-        GalleryScreen(viewModel, state)
-    }
+@Composable
+fun GalleryScreen(viewModel: GalleryViewModel = hiltViewModel()) {
+    val state by viewModel.uiState.collectAsState()
+    Gallery(viewModel, state)
 }
 
 @ExperimentalFoundationApi
 @Composable
-fun GalleryScreen(viewModel: GalleryViewModel, state: GalleryState) {
+fun Gallery(viewModel: GalleryViewModel, state: GalleryState) {
     when (state) {
-        Idle -> viewModel.sendIntent(DownloadPhotos)
-        Loading -> viewModel.logD("Loading")
-        is Photos -> PhotoGrid(state.photos)
-        is Error -> viewModel.logD("Error")
+        GalleryState.Idle -> viewModel.sendIntent(GalleryIntent.DownloadPhotos)
+        GalleryState.Loading -> viewModel.logD("Loading")
+        is GalleryState.Photos -> PhotoGrid(state.photos)
+        is GalleryState.Error -> viewModel.logD("Error")
     }
 }
 
