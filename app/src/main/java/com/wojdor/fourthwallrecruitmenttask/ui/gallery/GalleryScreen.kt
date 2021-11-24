@@ -17,9 +17,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberImagePainter
 import com.wojdor.fourthwallrecruitmenttask.R
 import com.wojdor.fourthwallrecruitmenttask.domain.model.Photo
+import com.wojdor.fourthwallrecruitmenttask.ui.common.ErrorMessage
 import com.wojdor.fourthwallrecruitmenttask.ui.common.Loader
 import com.wojdor.fourthwallrecruitmenttask.ui.gallery.GalleryState.*
-import com.wojdor.fourthwallrecruitmenttask.ui.util.extension.logD
 
 @ExperimentalFoundationApi
 @Composable
@@ -35,7 +35,10 @@ fun Gallery(viewModel: GalleryViewModel, state: GalleryState) {
         Idle -> viewModel.sendIntent(GalleryIntent.DownloadPhotos)
         Loading -> Loader()
         is Photos -> PhotoGrid(state.photos)
-        is Error -> viewModel.logD("Error")
+        is Error -> ErrorMessage(
+            title = stringResource(R.string.gallery_error_title),
+            message = stringResource(R.string.gallery_error_message)
+        )
     }
 }
 
