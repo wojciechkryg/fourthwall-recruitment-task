@@ -17,6 +17,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberImagePainter
 import com.wojdor.fourthwallrecruitmenttask.R
 import com.wojdor.fourthwallrecruitmenttask.domain.model.Photo
+import com.wojdor.fourthwallrecruitmenttask.ui.common.Loader
+import com.wojdor.fourthwallrecruitmenttask.ui.gallery.GalleryState.*
 import com.wojdor.fourthwallrecruitmenttask.ui.util.extension.logD
 
 @ExperimentalFoundationApi
@@ -30,10 +32,10 @@ fun GalleryScreen(viewModel: GalleryViewModel = hiltViewModel()) {
 @Composable
 fun Gallery(viewModel: GalleryViewModel, state: GalleryState) {
     when (state) {
-        GalleryState.Idle -> viewModel.sendIntent(GalleryIntent.DownloadPhotos)
-        GalleryState.Loading -> viewModel.logD("Loading")
-        is GalleryState.Photos -> PhotoGrid(state.photos)
-        is GalleryState.Error -> viewModel.logD("Error")
+        Idle -> viewModel.sendIntent(GalleryIntent.DownloadPhotos)
+        Loading -> Loader()
+        is Photos -> PhotoGrid(state.photos)
+        is Error -> viewModel.logD("Error")
     }
 }
 
