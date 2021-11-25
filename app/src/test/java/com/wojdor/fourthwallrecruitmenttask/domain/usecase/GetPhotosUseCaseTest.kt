@@ -12,6 +12,7 @@ import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.RelaxedMockK
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.single
+import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -20,6 +21,8 @@ import org.junit.jupiter.api.Test
 
 @ExperimentalCoroutinesApi
 class GetPhotosUseCaseTest {
+
+    private var testCoroutineDispatcher = TestCoroutineDispatcher()
 
     @RelaxedMockK
     private lateinit var photoRepository: PhotoRepository
