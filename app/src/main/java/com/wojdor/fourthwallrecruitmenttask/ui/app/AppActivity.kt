@@ -18,7 +18,7 @@ class AppActivity : ComponentActivity() {
         setContent {
             AppTheme {
                 Surface(color = MaterialTheme.colors.background) {
-                    ComposeApp()
+                    AppCompose()
                 }
             }
         }
