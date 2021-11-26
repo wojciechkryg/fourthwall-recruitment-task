@@ -1,4 +1,4 @@
-package com.wojdor.fourthwallrecruitmenttask.data.remote.photo
+package com.wojdor.fourthwallrecruitmenttask.data.source.remote.photo
 
 import com.wojdor.fourthwallrecruitmenttask.domain.model.Photo
 

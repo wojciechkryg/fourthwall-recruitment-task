@@ -1,6 +1,6 @@
 package com.wojdor.fourthwallrecruitmenttask.data.repository.photo
 
-import com.wojdor.fourthwallrecruitmenttask.data.remote.photo.PhotoRemoteSource
+import com.wojdor.fourthwallrecruitmenttask.data.source.remote.photo.PhotoRemoteSource
 import javax.inject.Inject
 
 class PhotoDataRepository @Inject constructor(

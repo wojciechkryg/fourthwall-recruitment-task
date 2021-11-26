@@ -43,7 +43,7 @@ class GetPhotosUseCaseTest {
     }
 
     @Test
-    fun `Check that GetPhotosUseCase emits Success with photos`() = runBlockingTest {
+    fun `Check that GetPhotosUseCase emits success with photos`() = runBlockingTest {
         val photos = relaxedMockk<List<Photo>>()
         coEvery { photoRepository.getPhotos() } returns photos
 
@@ -55,7 +55,7 @@ class GetPhotosUseCaseTest {
     }
 
     @Test
-    fun `Check that GetPhotosUseCase emits Error with photos`() = runBlockingTest {
+    fun `Check that GetPhotosUseCase emits error`() = runBlockingTest {
         val error = RuntimeException()
         coEvery { photoRepository.getPhotos() } throws error
 

@@ -1,7 +1,7 @@
 package com.wojdor.fourthwallrecruitmenttask.data.repository.photo
 
 import com.wojdor.fourthwallrecruitmenttask.coVerifyOnce
-import com.wojdor.fourthwallrecruitmenttask.data.remote.photo.PhotoRemoteSource
+import com.wojdor.fourthwallrecruitmenttask.data.source.remote.photo.PhotoRemoteSource
 import io.mockk.MockKAnnotations
 import io.mockk.confirmVerified
 import io.mockk.impl.annotations.InjectMockKs

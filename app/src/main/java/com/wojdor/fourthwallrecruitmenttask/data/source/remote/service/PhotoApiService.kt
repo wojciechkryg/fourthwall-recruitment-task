@@ -1,4 +1,4 @@
-package com.wojdor.fourthwallrecruitmenttask.data.remote.service
+package com.wojdor.fourthwallrecruitmenttask.data.source.remote.service
 
 import com.wojdor.fourthwallrecruitmenttask.data.entity.PhotoEntity
 import retrofit2.http.GET

@@ -1,9 +1,9 @@
-package com.wojdor.fourthwallrecruitmenttask.data.remote.photo
+package com.wojdor.fourthwallrecruitmenttask.data.source.remote.photo
 
 import com.wojdor.fourthwallrecruitmenttask.coVerifyOnce
 import com.wojdor.fourthwallrecruitmenttask.data.entity.PhotoEntity
 import com.wojdor.fourthwallrecruitmenttask.data.mapper.toPhotos
-import com.wojdor.fourthwallrecruitmenttask.data.remote.service.PhotoApiService
+import com.wojdor.fourthwallrecruitmenttask.data.source.remote.service.PhotoApiService
 import com.wojdor.fourthwallrecruitmenttask.relaxedMockk
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery

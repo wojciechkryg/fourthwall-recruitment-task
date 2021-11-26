@@ -77,6 +77,17 @@ class GalleryViewModelTest {
         }
 
     @Test
+    fun `Check that DownloadPhotos intent publish Error state on error`() =
+        runBlockingTest {
+            coEvery { getPhotosUseCase() } returns flow { emit(Result.Error(RuntimeException())) }
+
+            galleryViewModel.sendIntent(DownloadPhotos)
+
+            val state = galleryViewModel.uiState.value
+            assertTrue(state is Error)
+        }
+
+    @Test
     fun `Check that ShowPhotoDetails intent send NavigateToPhotoDetails effect`() =
         runBlockingTest {
             val photo = relaxedMockk<Photo>()

@@ -1,7 +1,7 @@
-package com.wojdor.fourthwallrecruitmenttask.data.remote.photo
+package com.wojdor.fourthwallrecruitmenttask.data.source.remote.photo
 
 import com.wojdor.fourthwallrecruitmenttask.data.mapper.toPhotos
-import com.wojdor.fourthwallrecruitmenttask.data.remote.service.PhotoApiService
+import com.wojdor.fourthwallrecruitmenttask.data.source.remote.service.PhotoApiService
 import javax.inject.Inject
 
 class PhotoRemoteDataSource @Inject constructor(

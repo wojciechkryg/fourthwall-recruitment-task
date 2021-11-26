@@ -14,6 +14,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -24,9 +25,12 @@ import com.wojdor.fourthwallrecruitmenttask.R
 import com.wojdor.fourthwallrecruitmenttask.domain.model.Photo
 import com.wojdor.fourthwallrecruitmenttask.ui.base.mvi.CollectUiEffects
 import com.wojdor.fourthwallrecruitmenttask.ui.details.DetailsEffect.SharePhoto
+import com.wojdor.fourthwallrecruitmenttask.ui.details.DetailsEffect.ShowError
 import com.wojdor.fourthwallrecruitmenttask.ui.details.DetailsIntent.ShowPhotoDetails
 import com.wojdor.fourthwallrecruitmenttask.ui.details.DetailsIntent.ShowSharePhoto
 import com.wojdor.fourthwallrecruitmenttask.ui.details.DetailsState.PhotoDetails
+import com.wojdor.fourthwallrecruitmenttask.ui.util.extension.shareJpegUri
+import com.wojdor.fourthwallrecruitmenttask.ui.util.extension.showToast
 
 
 @Composable
@@ -47,20 +51,17 @@ fun DetailsScreen(viewModel: DetailsViewModel = hiltViewModel(), photo: Photo) {
 
 @Composable
 private fun HandleDetailsEffect(viewModel: DetailsViewModel) {
+    val context = LocalContext.current
     CollectUiEffects(viewModel) {
         when (it) {
-            is SharePhoto -> {
-                // TODO: Share photo
-            }
+            is SharePhoto -> context.shareJpegUri(it.uri)
+            ShowError -> context.showToast(R.string.details_share_error)
         }
     }
 }
 
 @Composable
-private fun HandleDetailsState(
-    state: DetailsState,
-    viewModel: DetailsViewModel
-) {
+private fun HandleDetailsState(state: DetailsState, viewModel: DetailsViewModel) {
     when (state) {
         is PhotoDetails -> PhotoDetails(state.photo) {
             viewModel.sendIntent(ShowSharePhoto(state.photo.imageUrl))

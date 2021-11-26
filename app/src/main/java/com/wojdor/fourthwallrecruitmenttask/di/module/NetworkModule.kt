@@ -1,7 +1,7 @@
 package com.wojdor.fourthwallrecruitmenttask.di.module
 
 import com.wojdor.fourthwallrecruitmenttask.BuildConfig
-import com.wojdor.fourthwallrecruitmenttask.data.remote.service.PhotoApiService
+import com.wojdor.fourthwallrecruitmenttask.data.source.remote.service.PhotoApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
