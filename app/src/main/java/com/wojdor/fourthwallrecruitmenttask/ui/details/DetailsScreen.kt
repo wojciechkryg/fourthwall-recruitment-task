@@ -6,8 +6,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -21,8 +22,10 @@ import coil.compose.rememberImagePainter
 import coil.size.OriginalSize
 import com.wojdor.fourthwallrecruitmenttask.R
 import com.wojdor.fourthwallrecruitmenttask.domain.model.Photo
+import com.wojdor.fourthwallrecruitmenttask.ui.details.DetailsEffect.SharePhoto
 import com.wojdor.fourthwallrecruitmenttask.ui.details.DetailsIntent.ShowPhotoDetails
-import com.wojdor.fourthwallrecruitmenttask.ui.details.DetailsState.*
+import com.wojdor.fourthwallrecruitmenttask.ui.details.DetailsState.PhotoDetails
+
 
 @Composable
 fun DetailsScreen(navBackStackEntry: NavBackStackEntry) {
@@ -41,17 +44,26 @@ fun DetailsScreen(viewModel: DetailsViewModel = hiltViewModel(), photo: Photo) {
 @Composable
 fun DetailsScreen(viewModel: DetailsViewModel, state: DetailsState) {
     when (state) {
-        Idle -> {
+        is PhotoDetails -> PhotoDetails(state.photo) {
+            // TODO send intent to ViewModel
         }
-        is PhotoDetails -> PhotoDetails(state.photo)
     }
 }
 
 @Composable
-fun PhotoDetails(photo: Photo) {
-    Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-        Photo(photo)
-        Author(photo.author)
+fun PhotoDetails(photo: Photo, onShareClick: () -> Unit) {
+    Scaffold(floatingActionButton = { ShareButton(onShareClick) }) {
+        Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+            Photo(photo)
+            Author(photo.author)
+        }
+    }
+}
+
+@Composable
+fun ShareButton(onClick: () -> Unit) {
+    FloatingActionButton(onClick) {
+        Icon(Icons.Filled.Share, stringResource(R.string.details_share))
     }
 }
 

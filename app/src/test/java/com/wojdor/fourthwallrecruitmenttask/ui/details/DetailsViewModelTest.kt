@@ -2,7 +2,7 @@ package com.wojdor.fourthwallrecruitmenttask.ui.details
 
 import com.wojdor.fourthwallrecruitmenttask.domain.model.Photo
 import com.wojdor.fourthwallrecruitmenttask.relaxedMockk
-import com.wojdor.fourthwallrecruitmenttask.ui.details.DetailsState.Idle
+import com.wojdor.fourthwallrecruitmenttask.ui.details.DetailsIntent.ShowPhotoDetails
 import com.wojdor.fourthwallrecruitmenttask.ui.details.DetailsState.PhotoDetails
 import io.mockk.MockKAnnotations
 import io.mockk.impl.annotations.InjectMockKs
@@ -37,18 +37,20 @@ class DetailsViewModelTest {
     }
 
     @Test
-    fun `Check that initial state in GalleryViewModel is Idle`() = runBlockingTest {
-        val state = detailsViewModel.uiState.value
+    fun `Check that initial state in GalleryViewModel is PhotoDetails with empty Photo`() =
+        runBlockingTest {
+            val state = detailsViewModel.uiState.value
 
-        assertTrue(state is Idle)
-    }
+            assertTrue(state is PhotoDetails)
+            assertEquals(Photo(), (state as PhotoDetails).photo)
+        }
 
     @Test
-    fun `Check that DownloadPhotos intent publish Loading state`() =
+    fun `Check that ShowPhotoDetails intent publish PhotoDetails state`() =
         runBlockingTest {
             val photo = relaxedMockk<Photo>()
 
-            detailsViewModel.sendIntent(DetailsIntent.ShowPhotoDetails(photo))
+            detailsViewModel.sendIntent(ShowPhotoDetails(photo))
 
             val state = detailsViewModel.uiState.value
             assertTrue(state is PhotoDetails)

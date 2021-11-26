@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailsViewModel @Inject constructor() :
-    MviViewModel<DetailsIntent, DetailsState>(DetailsState.Idle) {
+    MviViewModel<DetailsIntent, DetailsState>(PhotoDetails()) {
 
     override fun onIntent(intent: DetailsIntent) {
         when (intent) {
