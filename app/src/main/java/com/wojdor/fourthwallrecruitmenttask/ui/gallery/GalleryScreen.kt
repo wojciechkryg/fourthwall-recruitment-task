@@ -19,8 +19,10 @@ import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
 import com.wojdor.fourthwallrecruitmenttask.R
 import com.wojdor.fourthwallrecruitmenttask.domain.model.Photo
+import com.wojdor.fourthwallrecruitmenttask.ui.base.mvi.CollectUiEffects
 import com.wojdor.fourthwallrecruitmenttask.ui.common.ErrorMessage
 import com.wojdor.fourthwallrecruitmenttask.ui.common.Loader
+import com.wojdor.fourthwallrecruitmenttask.ui.gallery.GalleryEffect.NavigateToPhotoDetails
 import com.wojdor.fourthwallrecruitmenttask.ui.gallery.GalleryIntent.DownloadPhotos
 import com.wojdor.fourthwallrecruitmenttask.ui.gallery.GalleryState.*
 import com.wojdor.fourthwallrecruitmenttask.ui.util.navigateToDetails
@@ -29,20 +31,32 @@ import com.wojdor.fourthwallrecruitmenttask.ui.util.navigateToDetails
 @Composable
 fun GalleryScreen(viewModel: GalleryViewModel = hiltViewModel(), navController: NavController) {
     val state by viewModel.uiState.collectAsState()
-    Gallery(viewModel, state, navController)
+    HandleGalleryEffect(viewModel, navController)
+    HandleGalleryState(viewModel, state)
+}
+
+@Composable
+private fun HandleGalleryEffect(viewModel: GalleryViewModel, navController: NavController) {
+    CollectUiEffects(viewModel) {
+        when (it) {
+            is NavigateToPhotoDetails -> navController.navigateToDetails(it.photo)
+        }
+    }
 }
 
 @ExperimentalFoundationApi
 @Composable
-fun Gallery(viewModel: GalleryViewModel, state: GalleryState, navController: NavController) {
+private fun HandleGalleryState(
+    viewModel: GalleryViewModel,
+    state: GalleryState
+) {
     when (state) {
         Idle -> viewModel.sendIntent(DownloadPhotos)
         Loading -> Loader()
-        is Photos -> PhotoGrid(state.photos) { navController.navigateToDetails(it) }
-        is Error -> ErrorMessage(
-            title = stringResource(R.string.gallery_error_title),
-            message = stringResource(R.string.gallery_error_message)
-        )
+        is Photos -> PhotoGrid(state.photos) {
+            viewModel.sendIntent(GalleryIntent.ShowPhotoDetails(it))
+        }
+        is Error -> ErrorMessage()
     }
 }
 

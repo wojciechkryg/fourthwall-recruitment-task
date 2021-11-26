@@ -4,7 +4,9 @@ import com.wojdor.fourthwallrecruitmenttask.domain.model.Photo
 import com.wojdor.fourthwallrecruitmenttask.domain.usecase.GetPhotosUseCase
 import com.wojdor.fourthwallrecruitmenttask.domain.usecase.base.Result
 import com.wojdor.fourthwallrecruitmenttask.relaxedMockk
+import com.wojdor.fourthwallrecruitmenttask.ui.gallery.GalleryEffect.NavigateToPhotoDetails
 import com.wojdor.fourthwallrecruitmenttask.ui.gallery.GalleryIntent.DownloadPhotos
+import com.wojdor.fourthwallrecruitmenttask.ui.gallery.GalleryIntent.ShowPhotoDetails
 import com.wojdor.fourthwallrecruitmenttask.ui.gallery.GalleryState.*
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -13,6 +15,7 @@ import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.unmockkAll
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runBlockingTest
@@ -71,5 +74,17 @@ class GalleryViewModelTest {
             val state = galleryViewModel.uiState.value
             assertTrue(state is Photos)
             assertEquals(photos, (state as Photos).photos)
+        }
+
+    @Test
+    fun `Check that ShowPhotoDetails intent send NavigateToPhotoDetails effect`() =
+        runBlockingTest {
+            val photo = relaxedMockk<Photo>()
+
+            galleryViewModel.sendIntent(ShowPhotoDetails(photo))
+
+            val effect = galleryViewModel.uiEffect.first()
+            assertTrue(effect is NavigateToPhotoDetails)
+            assertEquals(photo, (effect as NavigateToPhotoDetails).photo)
         }
 }

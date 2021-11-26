@@ -8,9 +8,14 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.wojdor.fourthwallrecruitmenttask.R
 
 @Composable
-fun ErrorMessage(title: String, message: String) {
+fun ErrorMessage(
+    title: String = stringResource(R.string.gallery_error_title),
+    message: String = stringResource(R.string.gallery_error_message)
+) {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,

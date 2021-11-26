@@ -22,8 +22,10 @@ import coil.compose.rememberImagePainter
 import coil.size.OriginalSize
 import com.wojdor.fourthwallrecruitmenttask.R
 import com.wojdor.fourthwallrecruitmenttask.domain.model.Photo
+import com.wojdor.fourthwallrecruitmenttask.ui.base.mvi.CollectUiEffects
 import com.wojdor.fourthwallrecruitmenttask.ui.details.DetailsEffect.SharePhoto
 import com.wojdor.fourthwallrecruitmenttask.ui.details.DetailsIntent.ShowPhotoDetails
+import com.wojdor.fourthwallrecruitmenttask.ui.details.DetailsIntent.ShowSharePhoto
 import com.wojdor.fourthwallrecruitmenttask.ui.details.DetailsState.PhotoDetails
 
 
@@ -38,14 +40,30 @@ fun DetailsScreen(navBackStackEntry: NavBackStackEntry) {
 fun DetailsScreen(viewModel: DetailsViewModel = hiltViewModel(), photo: Photo) {
     viewModel.sendIntent(ShowPhotoDetails(photo))
     val state by viewModel.uiState.collectAsState()
-    DetailsScreen(viewModel, state)
+    HandleDetailsEffect(viewModel)
+    HandleDetailsState(state, viewModel)
+
 }
 
 @Composable
-fun DetailsScreen(viewModel: DetailsViewModel, state: DetailsState) {
+private fun HandleDetailsEffect(viewModel: DetailsViewModel) {
+    CollectUiEffects(viewModel) {
+        when (it) {
+            is SharePhoto -> {
+                // TODO: Share photo
+            }
+        }
+    }
+}
+
+@Composable
+private fun HandleDetailsState(
+    state: DetailsState,
+    viewModel: DetailsViewModel
+) {
     when (state) {
         is PhotoDetails -> PhotoDetails(state.photo) {
-            // TODO send intent to ViewModel
+            viewModel.sendIntent(ShowSharePhoto(state.photo.imageUrl))
         }
     }
 }

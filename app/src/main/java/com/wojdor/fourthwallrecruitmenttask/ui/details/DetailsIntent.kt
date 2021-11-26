@@ -5,4 +5,5 @@ import com.wojdor.fourthwallrecruitmenttask.ui.base.mvi.UiIntent
 
 sealed class DetailsIntent : UiIntent {
     data class ShowPhotoDetails(val photo: Photo) : DetailsIntent()
+    data class ShowSharePhoto(val imageUrl: String) : DetailsIntent()
 }

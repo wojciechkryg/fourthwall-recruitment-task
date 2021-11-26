@@ -4,7 +4,9 @@ import androidx.lifecycle.viewModelScope
 import com.wojdor.fourthwallrecruitmenttask.domain.usecase.GetPhotosUseCase
 import com.wojdor.fourthwallrecruitmenttask.domain.usecase.base.Result
 import com.wojdor.fourthwallrecruitmenttask.ui.base.mvi.MviViewModel
+import com.wojdor.fourthwallrecruitmenttask.ui.gallery.GalleryEffect.NavigateToPhotoDetails
 import com.wojdor.fourthwallrecruitmenttask.ui.gallery.GalleryIntent.DownloadPhotos
+import com.wojdor.fourthwallrecruitmenttask.ui.gallery.GalleryIntent.ShowPhotoDetails
 import com.wojdor.fourthwallrecruitmenttask.ui.gallery.GalleryState.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -19,6 +21,7 @@ class GalleryViewModel @Inject constructor(
     override fun onIntent(intent: GalleryIntent) {
         when (intent) {
             DownloadPhotos -> downloadPhotos()
+            is ShowPhotoDetails -> sendEffect(NavigateToPhotoDetails(intent.photo))
         }
     }
 

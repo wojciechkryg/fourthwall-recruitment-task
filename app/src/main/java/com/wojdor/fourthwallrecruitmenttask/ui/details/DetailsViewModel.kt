@@ -1,6 +1,7 @@
 package com.wojdor.fourthwallrecruitmenttask.ui.details
 
 import com.wojdor.fourthwallrecruitmenttask.ui.base.mvi.MviViewModel
+import com.wojdor.fourthwallrecruitmenttask.ui.details.DetailsIntent.ShowSharePhoto
 import com.wojdor.fourthwallrecruitmenttask.ui.details.DetailsIntent.ShowPhotoDetails
 import com.wojdor.fourthwallrecruitmenttask.ui.details.DetailsState.PhotoDetails
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,6 +14,9 @@ class DetailsViewModel @Inject constructor() :
     override fun onIntent(intent: DetailsIntent) {
         when (intent) {
             is ShowPhotoDetails -> publishState(PhotoDetails(intent.photo))
+            is ShowSharePhoto -> {
+                // TODO: get image from url and call share effect
+            }
         }
     }
 }
