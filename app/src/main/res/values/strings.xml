@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Fourthwall Recruitment Task</string>
+    <string name="photo_grid_item_description">%s\'s photo</string>
+    <string name="gallery_error_title">Error</string>
+    <string name="gallery_error_message">Something went wrong…</string>
+    <string name="details_share">Share</string>
+    <string name="details_share_error">Cannot share photo</string>
+    <string name="share_image">Share image</string>
+</resources>
