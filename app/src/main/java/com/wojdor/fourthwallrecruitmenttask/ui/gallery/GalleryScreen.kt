@@ -25,6 +25,7 @@ import com.wojdor.fourthwallrecruitmenttask.ui.common.Loader
 import com.wojdor.fourthwallrecruitmenttask.ui.gallery.GalleryEffect.NavigateToPhotoDetails
 import com.wojdor.fourthwallrecruitmenttask.ui.gallery.GalleryIntent.DownloadPhotos
 import com.wojdor.fourthwallrecruitmenttask.ui.gallery.GalleryState.*
+import com.wojdor.fourthwallrecruitmenttask.ui.util.getColumnCount
 import com.wojdor.fourthwallrecruitmenttask.ui.util.navigateToDetails
 
 @ExperimentalFoundationApi
@@ -63,7 +64,7 @@ private fun HandleGalleryState(
 @ExperimentalFoundationApi
 @Composable
 fun PhotoGrid(photos: List<Photo>, onClick: (Photo) -> Unit) {
-    LazyVerticalGrid(GridCells.Fixed(COLUMN_COUNT)) {
+    LazyVerticalGrid(GridCells.Fixed(getColumnCount())) {
         items(photos) { PhotoGridItem(it, onClick) }
     }
 }
@@ -83,5 +84,4 @@ fun PhotoGridItem(photo: Photo, onClick: (Photo) -> Unit) {
     )
 }
 
-private const val COLUMN_COUNT = 2
 private const val ITEM_ASPECT_RATIO = 1f
